@@ -20,7 +20,7 @@ All content is centralized in:
 
 - Name: Giray Coskun
 - Location: Munich, Germany
-- Email: giray.coskun@tum.de
+- Email: giraycoskun@alumni.sabanciuniv.edu
 - LinkedIn: https://linkedin.com/in/giraycoskun
 - GitHub: https://github.com/giraycoskun
 - Portfolio: https://giraycoskun.com/work/

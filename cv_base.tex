@@ -4,7 +4,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[margin=0.68in]{geometry}
 \usepackage{lmodern}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,pdfencoding=auto,psdextra,pdfusetitle]{hyperref}
+\usepackage{hyperxmp}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{ifthen}
@@ -26,6 +27,16 @@
 
 \input{cv_data.tex}
 
+\title{\FullName\space-\space CV}
+\author{\FullName}
+
+\hypersetup{
+  pdftitle={\FullName\space-\space CV},
+  pdfauthor={\FullName},
+  pdfsubject={Curriculum Vitae},
+  pdfdisplaydoctitle=true
+}
+
 \newcommand{\ContactLine}{
   \Location
   \ifthenelse{\equal{\Phone}{}}{}{ \,|\, \Phone}
@@ -43,16 +54,18 @@
 \begin{document}
 
 \ifwithphoto
-  \begin{minipage}[t]{0.78\textwidth}
+  \begin{minipage}[t]{0.80\textwidth}
+    \vspace{0pt}
     {\LARGE \textbf{\FullName}} \\
-    \textbf{\TargetRole} \\
-    \ContactLine
+    {\large \textbf{\TargetRole}} \\
+    {\footnotesize \ContactLine}
   \end{minipage}
   \hfill
-  \begin{minipage}[t]{0.20\textwidth}
+  \begin{minipage}[t]{0.18\textwidth}
+    \vspace{0pt}
     \raggedleft
     \IfFileExists{\PhotoPath}{
-      \includegraphics[width=2.8cm,height=2.8cm,keepaspectratio]{\PhotoPath}
+      \includegraphics[width=2.4cm,height=2.4cm,keepaspectratio]{\PhotoPath}
     }{}
   \end{minipage}
 \else
@@ -67,13 +80,15 @@
 \section*{Core Skills}
 \textbf{Languages:} Python, Java, Go, TypeScript, JavaScript, SQL \\
 \textbf{Backend:} REST APIs, Microservices, Spring Boot, FastAPI, Flask, Express.js \\
-\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform, CI/CD, Linux, Nginx \\
+\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform, CI/CD, Linux, Nginx, systemd, GitHub Webhooks \\
 \textbf{Databases:} PostgreSQL, MySQL, MongoDB \\
 \textbf{Frontend:} React, Vite, Tailwind CSS
 
+\section*{Keywords}
 \iflongcv
-\section*{Target Keywords}
-Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API Development, Cloud Infrastructure, AWS, CI/CD, Docker, Kubernetes, Terraform, Microservices
+Software Engineer, DevOps Engineer, Backend Development, API Development, Microservices, Cloud Infrastructure, AWS, Docker, Kubernetes, Terraform, Nginx, Linux, systemd, GitHub Webhooks, CI/CD, Deployment Automation, Observability, Monitoring, Self-Hosting, Reverse Proxy
+\else
+Software Engineer, DevOps Engineer, Backend, APIs, AWS, Docker, CI/CD, Nginx, Linux, systemd, Webhooks
 \fi
 
 \section*{Experience}
@@ -83,7 +98,7 @@ Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API
   \item Implemented CI/CD pipelines using Docker to standardize build, release, and deployment workflows.
   \item Automated deployment processes and routine operations on Linux-based cloud environments.
   \iflongcv
-  \item Partnered with development teams to improve deployment reliability and reduce manual release effort.
+  \item Defined release guardrails with development teams, including deployment checklists and rollback-ready procedures.
   \fi
 \end{itemize}
 
@@ -92,6 +107,7 @@ Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API
   \item Designed and implemented AWS cloud infrastructure solutions for client migration projects.
   \item Built cloud-native data workflows with AWS Lambda, AWS Kinesis, and Amazon S3 using Python.
   \iflongcv
+  \item Prepared migration architecture notes and delivery documentation to support client handover and operations readiness.
   \item Earned AWS Certified Solutions Architect -- Associate to validate cloud architecture competencies.
   \fi
 \end{itemize}
@@ -101,7 +117,7 @@ Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API
   \item Developed backend services for e-commerce systems using Java and Spring-based components.
   \item Supported service containerization and data operations with Docker and MySQL.
   \iflongcv
-  \item Contributed to backend integration and deployment workflows across development environments.
+  \item Contributed to API integration validation and staged backend deployments across development environments.
   \fi
 \end{itemize}
 
@@ -119,10 +135,24 @@ Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API
 
 \section*{Projects}
 \textbf{Home Server Dashboard} \hfill \href{https://github.com/giraycoskun/server.giraycoskun.dev}{GitHub} \\
-Built a full-stack monitoring application with React, Express.js, TypeScript, and Nginx for real-time server health metrics.
+Built and self-hosted a React/Vite/TypeScript dashboard on Nginx to manage personal services and status pages.
+\iflongcv
+\begin{itemize}
+  \item Operated 18+ self-hosted services across Docker and systemd (including Uptime Kuma, Grafana, Traefik, Home Assistant, and Jellyfin).
+  \item Implemented HMAC-SHA256 GitHub webhook verification in an Express listener and automated dual builds via systemd-triggered deploy scripts.
+  \item Configured Nginx reverse-proxy and route mapping for local vs external delivery paths.
+\end{itemize}
+\fi
 
+\ifwithphoto
+\iflongcv
 \textbf{Automated Reasoning API} \hfill \href{https://github.com/giraycoskun/automated-reasoning}{GitHub} \\
 Developed a backend service with microservice and queue-based architecture for reasoning query processing.
+\fi
+\else
+\textbf{Automated Reasoning API} \hfill \href{https://github.com/giraycoskun/automated-reasoning}{GitHub} \\
+Developed a backend service with microservice and queue-based architecture for reasoning query processing.
+\fi
 
 \iflongcv
 \textbf{Personal Website} \hfill \href{https://github.com/giraycoskun/giraycoskun.com}{GitHub} \\
@@ -133,10 +163,16 @@ Implemented a custom AES-like encryption algorithm in x86-64 assembly language.
 \fi
 
 \section*{Education}
-\textbf{Technical University of Munich} \hfill Sep 2024 -- Jun 2026 (Expected) \\
-M.Sc. in Computer Science \\
-\textbf{Sabanci University} \hfill Sep 2017 -- Jun 2023 \\
-B.Sc. in Computer Science and Engineering (Double Major in Economics, Minor in Mathematics), GPA: 3.66/4
+\textbf{M.Sc. Informatics (not completed)} \hfill Sep 2024 -- Present \\
+Technical University of Munich, Munich, Germany \\
+\iflongcv
+\textit{Coursework:} Cloud Data Processing, Distributed Systems, Machine Learning \\
+\textit{Focus:} Data engineering and scalable systems
+\fi
+
+\textbf{B.Sc. Computer Science and Engineering} \hfill Sep 2017 -- Jun 2023 \\
+Sabanci University, Istanbul, Turkey \\
+Double Major in Economics, Minor in Mathematics, GPA: 3.66/4
 
 \iflongcv
 \section*{Publications}
