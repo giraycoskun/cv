@@ -15,21 +15,22 @@ CVS := cv_short cv_long cv_short_photo cv_long_photo
 PDFS := $(addsuffix _$(DATE).pdf,$(CVS))
 BASE_PDFS := $(addsuffix .pdf,$(CVS))
 
-.PHONY: all short long short_photo long_photo clean distclean check-latexmk
+.PHONY: all short long short_photo long_photo clean distclean check-latexmk prune-old-pdfs
 
-all: check-latexmk $(PDFS)
+all: check-latexmk prune-old-pdfs $(PDFS)
 
-short: check-latexmk cv_short_$(DATE).pdf
+short: check-latexmk prune-old-pdfs cv_short_$(DATE).pdf
 
-long: check-latexmk cv_long_$(DATE).pdf
+long: check-latexmk prune-old-pdfs cv_long_$(DATE).pdf
 
-short_photo: check-latexmk cv_short_photo_$(DATE).pdf
+short_photo: check-latexmk prune-old-pdfs cv_short_photo_$(DATE).pdf
 
-long_photo: check-latexmk cv_long_photo_$(DATE).pdf
+long_photo: check-latexmk prune-old-pdfs cv_long_photo_$(DATE).pdf
 
 %_$(DATE).pdf: %.tex cv_base.tex cv_data.tex
 	"$(LATEXMK)" -pdf -interaction=nonstopmode -halt-on-error "$<" && \
 	cp -f "$*.pdf" "$@" && \
+	rm -f "$*.pdf" && \
 	"$(LATEXMK)" -c "$<"
 
 check-latexmk:
@@ -39,6 +40,19 @@ check-latexmk:
 		echo "On macOS with MacTeX, run: export PATH=\"/Library/TeX/texbin:$$PATH\""; \
 		exit 1; \
 	fi
+
+prune-old-pdfs:
+	@rm -f $(BASE_PDFS)
+	@find . -maxdepth 1 -type f \( \
+		-name "cv_short_*.pdf" -o \
+		-name "cv_long_*.pdf" -o \
+		-name "cv_short_photo_*.pdf" -o \
+		-name "cv_long_photo_*.pdf" \
+	\) ! -name "cv_short_$(DATE).pdf" \
+	  ! -name "cv_long_$(DATE).pdf" \
+	  ! -name "cv_short_photo_$(DATE).pdf" \
+	  ! -name "cv_long_photo_$(DATE).pdf" \
+	  -delete
 
 clean:
 	@if [[ -x "$(LATEXMK)" ]]; then \

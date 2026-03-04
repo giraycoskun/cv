@@ -30,6 +30,8 @@ This creates date-stamped PDFs (example for March 4, 2026):
 - `cv_short_photo_2026-03-04.pdf`
 - `cv_long_photo_2026-03-04.pdf`
 
+Old/legacy CV PDFs are automatically removed before each build.
+
 Single variants:
 
 ```bash
