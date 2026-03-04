@@ -1,0 +1,159 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% Improve text extraction for ATS parsers when available.
+\IfFileExists{glyphtounicode.tex}{
+  \input{glyphtounicode.tex}
+  \pdfgentounicode=1
+}{}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=2pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+\input{cv_data.tex}
+
+\newcommand{\ContactLine}{
+  \Location
+  \ifthenelse{\equal{\Phone}{}}{}{ \,|\, \Phone}
+  \,|\, \href{mailto:\Email}{\Email}
+  \,|\, \href{\LinkedInURL}{LinkedIn}
+  \,|\, \href{\GitHubURL}{GitHub}
+  \,|\, \href{\PortfolioURL}{Portfolio}
+}
+
+\newcommand{\JobEntry}[4]{
+  \textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill #4
+}
+
+\begin{document}
+
+\ifwithphoto
+  \begin{minipage}[t]{0.78\textwidth}
+    {\LARGE \textbf{\FullName}} \\
+    \textbf{\TargetRole} \\
+    \ContactLine
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.20\textwidth}
+    \raggedleft
+    \IfFileExists{\PhotoPath}{
+      \includegraphics[width=2.8cm,height=2.8cm,keepaspectratio]{\PhotoPath}
+    }{}
+  \end{minipage}
+\else
+  {\LARGE \textbf{\FullName}} \\
+  \textbf{\TargetRole} \\
+  \ContactLine
+\fi
+
+\section*{Summary}
+\ProfessionalSummary
+
+\section*{Core Skills}
+\textbf{Languages:} Python, Java, Go, TypeScript, JavaScript, SQL \\
+\textbf{Backend:} REST APIs, Microservices, Spring Boot, FastAPI, Flask, Express.js \\
+\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform, CI/CD, Linux, Nginx \\
+\textbf{Databases:} PostgreSQL, MySQL, MongoDB \\
+\textbf{Frontend:} React, Vite, Tailwind CSS
+
+\iflongcv
+\section*{Target Keywords}
+Backend Developer, Software Engineer, DevOps Engineer, Full-Stack Developer, API Development, Cloud Infrastructure, AWS, CI/CD, Docker, Kubernetes, Terraform, Microservices
+\fi
+
+\section*{Experience}
+\JobEntry{DevOps Engineer}{Sep 2023 -- Mar 2024}{RedRose Technology}{Istanbul, Turkey}
+\begin{itemize}
+  \item Managed AWS infrastructure and production deployments for Java/Python ERP services used by 200+ NGOs.
+  \item Implemented CI/CD pipelines using Docker to standardize build, release, and deployment workflows.
+  \item Automated deployment processes and routine operations on Linux-based cloud environments.
+  \iflongcv
+  \item Partnered with development teams to improve deployment reliability and reduce manual release effort.
+  \fi
+\end{itemize}
+
+\JobEntry{Cloud Consultant Intern}{Jun 2022 -- Sep 2022}{Skyloop}{Istanbul, Turkey}
+\begin{itemize}
+  \item Designed and implemented AWS cloud infrastructure solutions for client migration projects.
+  \item Built cloud-native data workflows with AWS Lambda, AWS Kinesis, and Amazon S3 using Python.
+  \iflongcv
+  \item Earned AWS Certified Solutions Architect -- Associate to validate cloud architecture competencies.
+  \fi
+\end{itemize}
+
+\JobEntry{Backend Developer Intern}{Jun 2021 -- Sep 2021}{Migros E-commerce}{Istanbul, Turkey}
+\begin{itemize}
+  \item Developed backend services for e-commerce systems using Java and Spring-based components.
+  \item Supported service containerization and data operations with Docker and MySQL.
+  \iflongcv
+  \item Contributed to backend integration and deployment workflows across development environments.
+  \fi
+\end{itemize}
+
+\iflongcv
+\JobEntry{Software Engineer Intern}{Jun 2020 -- Sep 2020}{Havelsan}{Istanbul, Turkey}
+\begin{itemize}
+  \item Conducted machine learning research for image-recognition tasks using Python tooling.
+\end{itemize}
+
+\JobEntry{MLOps Engineer Intern}{Feb 2020 -- Jun 2020}{Spiky AI}{Buffalo, New York (Remote)}
+\begin{itemize}
+  \item Assisted NLP and sentiment-analysis research using Python, NLTK, and Scikit-learn.
+\end{itemize}
+\fi
+
+\section*{Projects}
+\textbf{Home Server Dashboard} \hfill \href{https://github.com/giraycoskun/server.giraycoskun.dev}{GitHub} \\
+Built a full-stack monitoring application with React, Express.js, TypeScript, and Nginx for real-time server health metrics.
+
+\textbf{Automated Reasoning API} \hfill \href{https://github.com/giraycoskun/automated-reasoning}{GitHub} \\
+Developed a backend service with microservice and queue-based architecture for reasoning query processing.
+
+\iflongcv
+\textbf{Personal Website} \hfill \href{https://github.com/giraycoskun/giraycoskun.com}{GitHub} \\
+Developed and deployed a React + TypeScript portfolio platform on Cloudflare Pages.
+
+\textbf{Encryption in Assembly} \hfill \href{https://github.com/giraycoskun/encryption-in-assembly}{GitHub} \\
+Implemented a custom AES-like encryption algorithm in x86-64 assembly language.
+\fi
+
+\section*{Education}
+\textbf{Technical University of Munich} \hfill Sep 2024 -- Jun 2026 (Expected) \\
+M.Sc. in Computer Science \\
+\textbf{Sabanci University} \hfill Sep 2017 -- Jun 2023 \\
+B.Sc. in Computer Science and Engineering (Double Major in Economics, Minor in Mathematics), GPA: 3.66/4
+
+\iflongcv
+\section*{Publications}
+\textbf{Using Unified Combinatorial Interaction Testing for MC/DC Coverage} \\
+Published in IEEE International Conference on Software Testing, Verification and Validation (ICST), 2022. \\
+\href{https://ieeexplore.ieee.org/document/9787934}{IEEE Xplore Link}
+
+\textbf{A Combinatorial Interaction Testing-Based Daily Build Process} \\
+Published in Journal of Systems and Software, Volume 190, 2022. \\
+\href{https://www.sciencedirect.com/science/article/abs/pii/S0164121222000875}{ScienceDirect Link}
+
+\textbf{Unsupervised Adaptation of DNN for Brain-Computer Interface Spellers} \\
+Published in Signal Processing and Communications Applications Conference (SIU), 2022. \\
+\href{https://doi.org/10.1109/SIU55565.2022.9864700}{DOI Link}
+
+\section*{Certification}
+AWS Certified Solutions Architect -- Associate
+\fi
+
+\end{document}
