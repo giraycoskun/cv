@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "cv_long_*.pdf"
+      - .github/workflows/notify-website.yml
 
 jobs:
   dispatch:
