@@ -13,8 +13,10 @@ jobs:
     env:
       SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
       TARGET_REPO: giraycoskun/giraycoskun.com
+      TARGET_WORKFLOW: update-cv.yml
+      TARGET_REF: main
     steps:
-      - name: Trigger website sync via repository_dispatch
+      - name: Trigger website sync via workflow_dispatch
         run: |
           if [ -z "$SITE_REPO_TOKEN" ]; then
             echo "SITE_REPO_TOKEN is empty or not configured."
@@ -25,13 +27,13 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $SITE_REPO_TOKEN" \
-            "https://api.github.com/repos/$TARGET_REPO/dispatches" \
-            -d '{"event_type":"cv-updated"}')
+            "https://api.github.com/repos/$TARGET_REPO/actions/workflows/$TARGET_WORKFLOW/dispatches" \
+            -d "{\"ref\":\"$TARGET_REF\"}")
 
           if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
-            echo "repository_dispatch failed with HTTP $http_code"
+            echo "workflow_dispatch failed with HTTP $http_code"
             cat /tmp/dispatch_response.json
             exit 1
           fi
 
-          echo "repository_dispatch sent to $TARGET_REPO"
+          echo "workflow_dispatch sent to $TARGET_REPO ($TARGET_WORKFLOW on $TARGET_REF)"
