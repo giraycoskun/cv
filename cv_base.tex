@@ -21,6 +21,7 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{2em}
 \setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=2pt}
 \titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{1pt}\titlerule]
 \titlespacing{\section}{0pt}{8pt}{4pt}
@@ -79,10 +80,10 @@
 
 \section*{Core Skills}
 \textbf{Languages:} Python, Java, Go, TypeScript, JavaScript, SQL \\
-\textbf{Backend:} REST APIs, Microservices, Distributed Systems, Event-Driven Workflows, Spring Boot, FastAPI, Flask, Express.js \\
-\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform (IaC), CI/CD, Linux, Nginx, systemd, GitHub Webhooks, Release Automation \\
+\textbf{Backend:} REST APIs, Microservices, Distributed Systems, Event-Driven Workflows, Spring Boot, FastAPI, Flask \\
+\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform (IaC), CI/CD, Linux, Nginx, systemd, GitHub Actions, Release Automation \\
 \textbf{Databases:} PostgreSQL, MySQL, MongoDB \\
-\textbf{Observability \& Ops:} Uptime Kuma, Grafana, Monitoring, Incident Response, Self-Hosting
+\textbf{Frontend:} React, Vue.js, Vite, Tailwind CSS
 
 \section*{Experience}
 \JobEntry{DevOps Engineer}{Sep 2023 -- Mar 2024}{RedRose Technology}{Istanbul, Turkey}
@@ -126,6 +127,9 @@
 \end{itemize}
 \fi
 
+\iflongcv
+\newpage
+\fi
 \section*{Projects}
 \textbf{Home Server Dashboard} \hfill \href{https://github.com/giraycoskun/server.giraycoskun.dev}{GitHub} \\
 Built and self-hosted a React/Vite/TypeScript dashboard on Nginx to manage personal services, status pages, and operational visibility.

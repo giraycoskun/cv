@@ -1,5 +1,5 @@
 # Giray Coskun
-**Software Engineer | DevOps Engineer**
+**Software | DevOps Engineer**
 
 Munich, Germany  
 Email: giraycoskun@alumni.sabanciuniv.edu  
@@ -10,15 +10,14 @@ Portfolio: https://giraycoskun.com/work/
 ## Summary
 Software Engineer with experience across backend development, cloud infrastructure, and DevOps automation.  
 Built Java/Python services, AWS-based deployments, and CI/CD pipelines for production systems in ERP and e-commerce domains.  
-Hands-on with distributed systems, self-hosting operations, Nginx reverse proxying, secure webhook automation, release engineering, and full-stack delivery using React and TypeScript.
+Hands-on with distributed systems, self-hosting, and release automation, with additional full-stack delivery using React and TypeScript.
 
 ## Core Skills
 - **Languages:** Python, Java, Go, TypeScript, JavaScript, SQL
-- **Backend:** REST APIs, Microservices, Distributed Systems, Event-Driven Workflows, Spring Boot, FastAPI, Flask, Express.js
-- **Cloud & DevOps:** AWS, Docker, Kubernetes, Terraform (IaC), CI/CD, Linux, Nginx, systemd, GitHub Webhooks, Release Automation
+- **Backend:** REST APIs, Microservices, Distributed Systems, Event-Driven Workflows, Spring Boot, FastAPI, Flask
+- **Cloud & DevOps:** AWS, Docker, Kubernetes, Terraform (IaC), CI/CD, Linux, Nginx, systemd, GitHub Actions, Release Automation
 - **Databases:** PostgreSQL, MySQL, MongoDB
-- **Frontend:** React, Vite, Tailwind CSS
-- **Observability & Ops:** Uptime Kuma, Grafana, Monitoring, Incident Response, Self-Hosting
+- **Frontend:** React, Vue.js, Vite, Tailwind CSS
 
 ## Experience
 ### DevOps Engineer — RedRose Technology
