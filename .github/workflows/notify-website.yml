@@ -10,11 +10,28 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    env:
+      SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
+      TARGET_REPO: giraycoskun/giraycoskun.com
     steps:
-      - name: Trigger giraycoskun-com sync
+      - name: Trigger website sync via repository_dispatch
         run: |
-          curl -X POST \
+          if [ -z "$SITE_REPO_TOKEN" ]; then
+            echo "SITE_REPO_TOKEN is empty or not configured."
+            exit 1
+          fi
+
+          http_code=$(curl -sS -o /tmp/dispatch_response.json -w "%{http_code}" -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.SITE_REPO_TOKEN }}" \
-            https://api.github.com/repos/giraycoskun/giraycoskun-com/dispatches \
-            -d '{"event_type":"cv-updated"}'
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $SITE_REPO_TOKEN" \
+            "https://api.github.com/repos/$TARGET_REPO/dispatches" \
+            -d '{"event_type":"cv-updated"}')
+
+          if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
+            echo "repository_dispatch failed with HTTP $http_code"
+            cat /tmp/dispatch_response.json
+            exit 1
+          fi
+
+          echo "repository_dispatch sent to $TARGET_REPO"
